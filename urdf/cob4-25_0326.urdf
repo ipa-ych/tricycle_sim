@@ -330,7 +330,7 @@
       <always_on>true</always_on>
       <update_rate>12.0</update_rate>
       <pose>0 0 0 0 0 0</pose>
-      <visualize>false</visualize>
+      <visualize>true</visualize>
       <ray>
         <scan>
           <horizontal>
@@ -351,9 +351,16 @@
           <stddev>0.02</stddev>
         </noise>
       </ray>
-      <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_base_laser_front_controller">
+      <!-- <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_base_laser_front_controller">
         <topicName>base_laser_front/scan_raw</topicName>
         <frameName>base_laser_front_link</frameName>
+      </plugin> -->
+      <plugin name="gazebo_ros_base_laser_front_controller" filename="libgazebo_ros_ray_sensor.so">
+        <ros>
+          <namespace>base_laser_front</namespace>
+          <remapping>~/out:=scan_raw</remapping>
+        </ros>
+        <output_type>sensor_msgs/LaserScan</output_type>
       </plugin>
     </sensor>
   </gazebo>
@@ -388,7 +395,7 @@
       <always_on>true</always_on>
       <update_rate>12.0</update_rate>
       <pose>0 0 0 0 0 0</pose>
-      <visualize>false</visualize>
+      <visualize>true</visualize>
       <ray>
         <scan>
           <horizontal>
@@ -409,9 +416,16 @@
           <stddev>0.02</stddev>
         </noise>
       </ray>
-      <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_base_laser_left_controller">
+      <!-- <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_base_laser_left_controller">
         <topicName>base_laser_left/scan_raw</topicName>
         <frameName>base_laser_left_link</frameName>
+      </plugin> -->
+      <plugin name="gazebo_ros_base_laser_left_controller" filename="libgazebo_ros_ray_sensor.so">
+        <ros>
+          <namespace>base_laser_left</namespace>
+          <remapping>~/out:=scan_raw</remapping>
+        </ros>
+        <output_type>sensor_msgs/LaserScan</output_type>
       </plugin>
     </sensor>
   </gazebo>
@@ -445,7 +459,7 @@
       <always_on>true</always_on>
       <update_rate>12.0</update_rate>
       <pose>0 0 0 0 0 0</pose>
-      <visualize>false</visualize>
+      <visualize>true</visualize>
       <ray>
         <scan>
           <horizontal>
@@ -466,9 +480,16 @@
           <stddev>0.02</stddev>
         </noise>
       </ray>
-      <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_base_laser_right_controller">
+      <!-- <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_base_laser_right_controller">
         <topicName>base_laser_right/scan_raw</topicName>
         <frameName>base_laser_right_link</frameName>
+      </plugin> -->
+      <plugin name="gazebo_ros_base_laser_right_controller" filename="libgazebo_ros_ray_sensor.so">
+        <ros>
+          <namespace>base_laser_right</namespace>
+          <remapping>~/out:=scan_raw</remapping>
+        </ros>
+        <output_type>sensor_msgs/LaserScan</output_type>
       </plugin>
     </sensor>
   </gazebo>
