@@ -7,6 +7,7 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_python REQUIRED)
 find_package(control_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
@@ -49,5 +50,13 @@ install(
   DESTINATION
     lib/${PROJECT_NAME}
 )
+
+# Install Python scripts
+install(PROGRAMS
+  src/cmd_vel_bridge_node.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+ament_python_install_package(${PROJECT_NAME})
 
 ament_package()
