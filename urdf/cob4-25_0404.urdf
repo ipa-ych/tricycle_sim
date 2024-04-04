@@ -1,0 +1,272 @@
+<?xml version="1.0"?>
+<robot name="tricycle_drive" xmlns:xacro="http://ros.org/wiki/xacro">
+  <material name="IPA/LightGrey">
+    <color rgba="0.7 0.7 0.7 1.0"/>
+  </material>
+  <material name="IPA/DarkGrey">
+    <color rgba="0.4 0.4 0.4 1.0"/>
+  </material>
+  <material name="IPA/Black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+  <material name="IPA/Metall">
+    <color rgba="0.7 0.7 0.7 1.0"/>
+  </material>
+  <material name="IPA/YellowRubber">
+    <color rgba="0.4 0.27 0.16 1.0"/>
+  </material>
+  <material name="IPA/Orange">
+    <color rgba="1.0 0.4 0.0 1.0"/>
+  </material>
+  <material name="IPA/Blue">
+    <color rgba="0.0 0.0 0.5 1.0"/>
+  </material>
+  <material name="Black">
+    <color rgba="0 0 0 1" />
+  </material>
+  <material name="Grey">
+    <color rgba="0.8 0.8 0.8 1" />
+  </material>
+  <material name="Orange">
+    <color rgba="1 0.6 0 1" />
+  </material>
+  <material name="White">
+    <color rgba="1 1 1 1" />
+  </material>
+  <!-- base_footprint -->
+  <link name="base_footprint"/>
+  <joint name="base_footprint_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+  </joint>
+  <link name="base_link" />
+  <joint name="base_charger_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.2992 0.0 0.09089"/>
+    <parent link="base_chassis_link"/>
+    <child link="base_charger_link"/>
+  </joint>
+  <!-- base_charger -->
+  <link name="base_charger_link"/>
+  <!-- Chassis -->
+  <link name="base_chassis_link">
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="10"/>
+      <inertia ixx="5.652232699207" ixy="-0.009719934438" ixz="1.293988226423" iyy="5.669473158652" iyz="-0.007379583694" izz="3.683196351726"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <!-- <mesh filename="package://cob_description/meshes/cob4_base/base.dae"/> -->
+        <mesh filename="file:///home/nhg-yc/ros2_ws/tricycle_ws/install/tricycle_sim/share/tricycle_sim/meshes/cob4_base/base.dae"/>
+        <!--box size="0.01 0.01 0.01" /-->
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/nhg-yc/ros2_ws/tricycle_ws/install/tricycle_sim/share/tricycle_sim/meshes/cob4_base/base_collision.stl"/>
+        <!--box size="0.01 0.01 0.01" /-->
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_chassis_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="base_chassis_link"/>
+  </joint>
+
+  <!-- left wheel rotation link  -->
+  <joint name="fl_caster_rotation_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.12422 0.21515 0.0782"/>
+    <parent link="base_chassis_link"/>
+    <child link="fl_caster_rotation_link"/>
+  </joint>
+  <link name="fl_caster_rotation_link">
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="5.9"/>
+      <inertia ixx="0.04" ixy="-0.0007" ixz="0.0" iyy="0.02" iyz="-0.000004" izz="0.05"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="file:///home/nhg-yc/ros2_ws/tricycle_ws/install/tricycle_sim/share/tricycle_sim/meshes/drive_wheel/caster.stl"/>
+      </geometry>
+      <material name="IPA/LightGrey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- left wheel Link -->
+  <link name="fl_caster_r_wheel_link">
+    <collision>
+      <geometry>
+        <cylinder length="0.005" radius="0.0782" />
+      </geometry>
+    </collision>
+    <visual>
+      <geometry>
+        <!-- <cylinder length="0.08" radius="0.0782" /> -->
+        <mesh filename="file:///home/nhg-yc/ros2_ws/tricycle_ws/install/tricycle_sim/share/tricycle_sim/meshes/drive_wheel/wheel.dae"/>
+      </geometry>
+      <origin rpy="-1.5708 0 0"/>
+      <material name="Black" />
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="0.44036"/>
+      <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+    </inertial>
+  </link>
+
+  <joint name="fl_caster_r_wheel_joint" type="continuous">
+    <origin xyz="0.12422 0.21515 0.0782" rpy="-1.57 0 0" />
+    <parent link="base_chassis_link" />
+    <child link="fl_caster_r_wheel_link" />
+    <axis xyz="0 0 1" />
+    <dynamics damping="0.2" />
+  </joint>
+
+  <!-- right wheel rotation link -->
+  <joint name="fr_caster_rotation_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.12422 -0.21515 0.0782"/>
+    <parent link="base_chassis_link"/>
+    <child link="fr_caster_rotation_link"/>
+  </joint>
+  <link name="fr_caster_rotation_link">
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="5.9"/>
+      <inertia ixx="0.04" ixy="-0.0007" ixz="0.0" iyy="0.02" iyz="-0.000004" izz="0.05"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="file:///home/nhg-yc/ros2_ws/tricycle_ws/install/tricycle_sim/share/tricycle_sim/meshes/drive_wheel/caster.stl"/>
+      </geometry>
+      <material name="IPA/LightGrey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- right wheel Link -->
+  <link name="fr_caster_r_wheel_link">
+    <collision>
+      <geometry>
+        <cylinder length="0.005" radius="0.0782" />
+      </geometry>
+    </collision>
+    <visual>
+      <geometry>
+        <!-- <cylinder length="0.08" radius="0.0782" /> -->
+        <mesh filename="file:///home/nhg-yc/ros2_ws/tricycle_ws/install/tricycle_sim/share/tricycle_sim/meshes/drive_wheel/wheel.dae"/>
+      </geometry>
+      <origin rpy="-1.5708 0 0"/>
+      <material name="Black" />
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="0.44036"/>
+      <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+    </inertial>
+  </link>
+
+  <joint name="fr_caster_r_wheel_joint" type="continuous">
+    <origin xyz="0.12422 -0.21515 0.0782" rpy="-1.57 0 0" />
+    <parent link="base_chassis_link" />
+    <child link="fr_caster_r_wheel_link" />
+    <axis xyz="0 0 1" />
+    <dynamics damping="0.2" />
+  </joint>
+
+  <!-- Steering Link -->
+  <link name="b_caster_rotation_link">
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="5.9"/>
+      <inertia ixx="0.04" ixy="-0.0007" ixz="0.0" iyy="0.02" iyz="-0.000004" izz="0.05"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="file:///home/nhg-yc/ros2_ws/tricycle_ws/install/tricycle_sim/share/tricycle_sim/meshes/drive_wheel/caster.stl"/>
+      </geometry>
+      <material name="IPA/LightGrey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="b_caster_rotation_joint" type="continuous">
+    <origin xyz="-0.24844 0.0 0.0782" rpy="0 0 0" />
+    <parent link="base_chassis_link" />
+    <child link="b_caster_rotation_link" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <!-- front wheel link -->
+  <link name="b_caster_r_wheel_link">
+    <visual>
+      <geometry>
+        <!-- <cylinder length="0.08" radius="0.0782" /> -->
+        <mesh filename="file:///home/nhg-yc/ros2_ws/tricycle_ws/install/tricycle_sim/share/tricycle_sim/meshes/drive_wheel/wheel.dae"/>
+      </geometry>
+      <origin rpy="-1.5708 0 0"/>
+      <material name="Black" />
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="5.9"/>
+      <inertia ixx="0.04" ixy="-0.0007" ixz="0.0" iyy="0.02" iyz="-0.000004" izz="0.05"/>
+    </inertial>
+    <collision>
+      <geometry>
+        <cylinder length="0.005" radius="0.0782" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="b_caster_r_wheel_joint" type="continuous">
+    <parent link="b_caster_rotation_link" />
+    <child link="b_caster_r_wheel_link" />
+    <origin xyz="0 0 0" rpy="-1.57 1.57 0" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <ros2_control name="GazeboSystem" type="system">
+    <hardware>
+      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+    </hardware>
+    <joint name="b_caster_rotation_joint">
+      <command_interface name="position" />
+      <state_interface name="position" />
+    </joint>
+    <joint name="fl_caster_r_wheel_joint">
+      <command_interface name="velocity" />
+      <state_interface name="velocity" />
+      <state_interface name="position" />
+    </joint>
+    <joint name="fr_caster_r_wheel_joint">
+      <command_interface name="velocity" />
+      <state_interface name="velocity" />
+      <state_interface name="position" />
+    </joint>
+  </ros2_control>
+
+  <gazebo>
+    <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+      <parameters>$(find tricycle_sim)/config/cob_tricycle_steering_controller_0404.yaml</parameters>
+    </plugin>
+  </gazebo>
+
+</robot>
