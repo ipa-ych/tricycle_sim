@@ -53,7 +53,8 @@ install(
 
 # Install Python scripts
 install(PROGRAMS
-  src/cmd_vel_bridge_node.py
+  src/cmd_vel_bridge_Twist_node.py 
+  src/cmd_vel_bridge_TwistStamped_node.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

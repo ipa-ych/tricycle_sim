@@ -20,7 +20,9 @@ tricycle_steering_controller:
     open_loop: false
     velocity_rolling_window_size: 10
     position_feedback: false
-    use_stamped_vel: true
+    # use_stamped_vel: true   # /tricycle_steering_controller/reference -> geometry_msgs/msg/TwistStamped 
+    use_stamped_vel: false  # /tricycle_steering_controller/reference_unstamped -> geometry_msgs/msg/Twist
+
     rear_wheels_names: [fr_caster_r_wheel_joint, fl_caster_r_wheel_joint]
     front_wheels_names: [b_caster_rotation_joint]
 
@@ -33,12 +35,3 @@ tricycle_steering_controller:
     # Odometry
     odom_frame_id: base_footprint
     base_frame_id: base_link
-
-    steering:
-      min_position: -0.785
-      max_position: 0.785
-      # min_velocity: 0.0
-      max_velocity: 1.0
-      # min_acceleration: 0.0
-      max_acceleration: 1.0
-    

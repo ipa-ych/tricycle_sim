@@ -6,15 +6,16 @@ from std_msgs.msg import Header
 
 class CmdVelBridge(Node):
     def __init__(self):
-        super().__init__('cmd_vel_bridge')
+        super().__init__('cmd_vel_bridge_TwistStamped')
         self.subscription = self.create_subscription(
             Twist,
             'cmd_vel_out',
             self.cmd_vel_callback,
             10
         )
-        # self.publisher = self.create_publisher(TwistStamped, 'cmd_vel_stamped', 10)
+        # self.publisher = self.create_publisher(Twist, 'tricycle_steering_controller/reference_unstamped', 10)
         self.publisher = self.create_publisher(TwistStamped, 'tricycle_steering_controller/reference', 10)
+
         
     def cmd_vel_callback(self, msg):
         twist_stamped_msg = TwistStamped()
