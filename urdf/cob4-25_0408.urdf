@@ -265,7 +265,7 @@
 
   <!-- laser -->
   <joint name="base_laser_front_joint" type="fixed">
-    <origin rpy="0.0 0.0 0.0" xyz="-0.244 0.0 0.20858"/>
+    <origin rpy="0.0 0.0 3.14" xyz="-0.244 0.0 0.20858"/>
     <parent link="base_link"/>
     <child link="base_laser_front_link"/>
   </joint>
@@ -330,7 +330,7 @@
     </sensor>
   </gazebo>
   <joint name="base_laser_left_joint" type="fixed">
-    <origin rpy="0.0 0.0 2.094" xyz="0.122 0.21131 0.20858"/>
+    <origin rpy="0.0 0.0 1.0472" xyz="0.122 0.21131 0.20858"/>
     <parent link="base_link"/>
     <child link="base_laser_left_link"/>
   </joint>
@@ -395,7 +395,7 @@
     </sensor>
   </gazebo>
   <joint name="base_laser_right_joint" type="fixed">
-    <origin rpy="0.0 0.0 -2.094" xyz="0.122 -0.21131 0.20858"/>
+    <origin rpy="0.0 0.0 -1.0472" xyz="0.122 -0.21131 0.20858"/>
     <parent link="base_link"/>
     <child link="base_laser_right_link"/>
   </joint>
