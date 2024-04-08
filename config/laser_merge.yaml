@@ -7,26 +7,26 @@
     inverse2: true
     inverse3: true
     laser1Alpha: 0.0
-    laser1AngleMax: 94.0
-    laser1AngleMin: -4.0
+    laser1AngleMax: 135
+    laser1AngleMin: -135
     laser1B: 0
     laser1G: 0
     laser1R: 255
     laser1XOff: -0.3
     laser1YOff: -0.475
     laser1ZOff: 0.176
-    laser2Alpha: 180.0
-    laser2AngleMax: 94.0
-    laser2AngleMin: 0.0
+    laser2Alpha: 120.0
+    laser2AngleMax: 135
+    laser2AngleMin: -135
     laser2B: 255
     laser2G: 0
     laser2R: 0
     laser2XOff: 0.3
     laser2YOff: 0.475
     laser2ZOff: 0.176
-    laser3Alpha: 180.0
-    laser3AngleMax: 94.0
-    laser3AngleMin: 0.0
+    laser3Alpha: 240.0
+    laser3AngleMax: 135
+    laser3AngleMin: -135
     laser3B: 0
     laser3G: 255
     laser3R: 0
