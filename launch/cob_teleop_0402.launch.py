@@ -110,5 +110,5 @@ def generate_launch_description():
         # rviz,
         node_robot_state_publisher,
         spawn_entity,
-        tricycle_drive_spawner
+        # tricycle_drive_spawner
     ])
