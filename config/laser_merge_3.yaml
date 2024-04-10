@@ -34,7 +34,7 @@
     laser3YOff: -0.21131
     laser3ZOff: 0.20858
     pointCloudTopic: cloud_in
-    pointCloutFrameId: base_footprint
+    pointCloutFrameId: base_chassis_link
     qos_overrides./parameter_events.publisher.depth: 1000
     # qos_overrides./parameter_events.publisher.durability: volatile
     # qos_overrides./parameter_events.publisher.history: keep_last
@@ -45,7 +45,7 @@
     show1: true
     show2: true
     show3: true
-    use_sim_time: false
+    use_sim_time: true
 
 /pointcloud_to_laserscan:
   ros__parameters:
@@ -63,12 +63,13 @@
           depth: 1000
           # durability: volatile
           # history: keep_last
+          # reliability: best_effort
           reliability: best_effort
     queue_size: 16
     range_max: 29.5
     range_min: 0.05
     scan_time: 0.3333
-    target_frame: base_footprint
+    # target_frame: base_chassis_link
     transform_tolerance: 0.01
     use_inf: true
-    use_sim_time: false
+    use_sim_time: true
