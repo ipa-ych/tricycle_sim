@@ -13,6 +13,7 @@ find_package(geometry_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_action REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(trajectory_msgs REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -47,6 +48,19 @@ ament_target_dependencies(circle_drive
 install(
   TARGETS
     circle_drive
+  DESTINATION
+    lib/${PROJECT_NAME}
+)
+
+add_executable(position_publisher src/position_publisher_node.cpp)
+ament_target_dependencies(position_publisher
+  rclcpp
+  trajectory_msgs
+)
+## Install
+install(
+  TARGETS
+    position_publisher
   DESTINATION
     lib/${PROJECT_NAME}
 )
