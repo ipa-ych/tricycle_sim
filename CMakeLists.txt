@@ -65,6 +65,19 @@ install(
     lib/${PROJECT_NAME}
 )
 
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
+execute_process(
+  COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_INSTALL_PREFIX}/lib/${PROJECT_NAME}/cmd_vel_bridge_Twist_node.py ${CMAKE_CURRENT_BINARY_DIR}/bin/cmd_vel_bridge_Twist_node
+  COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_INSTALL_PREFIX}/lib/${PROJECT_NAME}/cmd_vel_bridge_TwistStamped_node.py ${CMAKE_CURRENT_BINARY_DIR}/bin/cmd_vel_bridge_TwistStamped_node
+)
+
+# Install the symbolic link
+install(
+  FILES ${CMAKE_CURRENT_BINARY_DIR}/bin/cmd_vel_bridge_Twist_node
+  FILES ${CMAKE_CURRENT_BINARY_DIR}/bin/cmd_vel_bridge_TwistStamped_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 # Install Python scripts
 install(PROGRAMS
   src/cmd_vel_bridge_Twist_node.py 
